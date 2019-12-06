@@ -4,3 +4,10 @@ mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 mvn test -B
 
+addons:
+  sonarcloud:
+    organization: "ryru"
+    token:
+      secure: "fH9dIL5rgAyTzCTZoEEsHZ66IR8r7bk/t+zW8tnrbLn3sK8SXOrGzbWyYPGIxSkdR+hacKeuCCbqo8C15vwyPG4LPS65+WG8LxoMppKqbVk/gIhYlnCLnDk/z2Kn62i7TlOn7ZGsoHqK5AZrTaUWsvU13ZbUNmHLoIw2oKOUPgdmg9WP5gLRohC7JPrDSlC2MHO5mIiO9GFb7rCYs4ubjzAKsh/XoS/qe7mHvpsKWysmoWO2Y6i7a0KwPsg5uXmCcFavaXBluFRKGaOXoj9aZcgu2nIqI2lCS9yrS8Udt1toWLC5ouOboPeQZ5mL6n6LXVCPWpyC9kbABJxuU3hJbF/8UduCpAAnPAc616hAOK3PzcVP1WkD36T3woySX1we/BAaJ2EY7sMRoBnmLtQwssQjWYPSOYI8975XD6r/gcQ+4eF3aswaa7ZlDVMShBichMFrJMViZ/bN8Vg7/61yHPqnqgXfJAdI6p9uXxCR4gTSImDl2++xh+tp1WMRHf2NZsZWYCZF43rO0BEik0Mm+otK37lLjVm2K6DR8KorHWs4fxjGyMHXCcKrD3flxdMqgVpqTQ9K+lE1D6/XemZ/u0nNJ6l1C0LrqfUmhK9LUMpnOiNacRQhkYJP2Y67jfkeqRS1tD3eNaroc8m9fBUJ3wxtdyH+fYhxmEoD2FKYmb0="
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ryru_SVM
