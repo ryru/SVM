@@ -48,26 +48,26 @@ public class MealList {
   }
 
   public List<MenuOption> getMealMonday() {
-    return meals.get(new Weekday(("Mo")));
+    return meals.get(new Weekday((Weekdays.MONDAY)));
   }
 
   public List<MenuOption> getMealTuesday() {
-    return meals.get(new Weekday(("Di")));
+    return meals.get(new Weekday((Weekdays.TUESDAY)));
   }
 
   public List<MenuOption> getMealWednesday() {
-    return meals.get(new Weekday(("Mi")));
+    return meals.get(new Weekday((Weekdays.WEDNESDAY)));
   }
 
   public List<MenuOption> getMealThursday() {
-    return meals.get(new Weekday(("Do")));
+    return meals.get(new Weekday((Weekdays.THURSDAY)));
   }
 
   public List<MenuOption> getMealFriday() {
-    return meals.get(new Weekday(("Fr")));
+    return meals.get(new Weekday((Weekdays.FRIDAY)));
   }
 
   public List<MenuOption> getMealSaturday() {
-    return meals.get(new Weekday(("Sa")));
+    return meals.get(new Weekday((Weekdays.SATURDAY)));
   }
 }

@@ -26,9 +26,9 @@ public class MenuParser {
 
     List<Weekday> weekdayList = new ArrayList<>();
     span.forEach(e -> {
-      String day = e.getElementsByClass("day").text().trim();
+      Weekdays weekday = Weekday.parseWeekday(e.getElementsByClass("day").text().trim());
       String date = e.getElementsByClass("date").text().trim();
-      weekdayList.add(new Weekday(day, date));
+      weekdayList.add(new Weekday(weekday, date));
     });
 
     // menu
