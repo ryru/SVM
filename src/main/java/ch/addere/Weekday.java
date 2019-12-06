@@ -13,16 +13,16 @@ enum Weekdays {
 
 public class Weekday {
 
-  private Weekdays weekday;
+  private Weekdays weekdays;
   private String date;
 
-  public Weekday(Weekdays weekday) {
-    this.weekday = weekday;
+  public Weekday(Weekdays weekdays) {
+    this.weekdays = weekdays;
     this.date = "";
   }
 
-  public Weekday(Weekdays weekday, String date) {
-    this.weekday = weekday;
+  public Weekday(Weekdays weekdays, String date) {
+    this.weekdays = weekdays;
     this.date = date;
   }
 
@@ -35,20 +35,27 @@ public class Weekday {
 
     Weekdays weekday;
 
-    if (day.equals("mo")) {
-      weekday = Weekdays.MONDAY;
-    } else if (day.equals("di")) {
-      weekday = Weekdays.TUESDAY;
-    } else if (day.equals("mi")) {
-      weekday = Weekdays.WEDNESDAY;
-    } else if (day.equals("do")) {
-      weekday = Weekdays.THURSDAY;
-    } else if (day.equals("fr")) {
-      weekday = Weekdays.FRIDAY;
-    } else if (day.equals("sa")) {
-      weekday = Weekdays.SATURDAY;
-    } else {
-      throw new IllegalArgumentException("Invalid day: " + day);
+    switch (day) {
+      case "mo":
+        weekday = Weekdays.MONDAY;
+        break;
+      case "di":
+        weekday = Weekdays.TUESDAY;
+        break;
+      case "mi":
+        weekday = Weekdays.WEDNESDAY;
+        break;
+      case "do":
+        weekday = Weekdays.THURSDAY;
+        break;
+      case "fr":
+        weekday = Weekdays.FRIDAY;
+        break;
+      case "sa":
+        weekday = Weekdays.SATURDAY;
+        break;
+      default:
+        throw new IllegalArgumentException("Invalid day: " + day);
     }
 
     return weekday;
@@ -69,20 +76,20 @@ public class Weekday {
       return false;
     }
 
-    Weekday weekday = (Weekday) obj;
-    return Objects.equals(weekday.weekday, this.weekday);
+    Weekday wd = (Weekday) obj;
+    return Objects.equals(wd.weekdays, this.weekdays);
 
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(weekday);
+    return Objects.hash(weekdays);
   }
 
   public String getDay() {
     String day;
 
-    switch (weekday) {
+    switch (weekdays) {
       case MONDAY:
         day = "Mo";
         break;
