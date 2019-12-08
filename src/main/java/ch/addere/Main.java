@@ -1,7 +1,15 @@
 package ch.addere;
 
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class Main {
 
@@ -25,14 +33,26 @@ public class Main {
     }
 
     if (parameterOptions.hasMensa()) {
-      MenuParser menuParserMensa = new MenuParser(MENSA_URL);
+
+      InputStream in = new URL(MENSA_URL).openStream();
+      File tempFile = File.createTempFile("mensa","html");
+      tempFile.deleteOnExit();
+      Files.copy(in, Paths.get(tempFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
+
+
+      MenuParser menuParserMensa = new MenuParser(tempFile, MENSA_URL);
       MealList mensaMeals = menuParserMensa.parseMenues();
       MenuPrinter menuMensaPrinter = new MenuPrinter(mensaMeals, parameterOptions);
       System.out.println(menuMensaPrinter.toString());
     }
 
     if (parameterOptions.hasBistro()) {
-      MenuParser menuParserBistro = new MenuParser(BISTRO_URL);
+      InputStream in = new URL(BISTRO_URL).openStream();
+      File tempFile = File.createTempFile("bistro","html");
+      tempFile.deleteOnExit();
+      Files.copy(in, Paths.get(tempFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
+
+      MenuParser menuParserBistro = new MenuParser(tempFile, BISTRO_URL);
       MealList bistroMeals = menuParserBistro.parseMenues();
       MenuPrinter menuForschPrinter = new MenuPrinter(bistroMeals, parameterOptions);
       System.out.println(menuForschPrinter.toString());

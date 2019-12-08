@@ -1,5 +1,6 @@
 package ch.addere;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +11,17 @@ import org.jsoup.select.Elements;
 
 public class MenuParser {
 
-  private String url;
+  private File file;
+  private String host;
 
-  MenuParser(String url) {
-    this.url = url;
+  MenuParser(File file, String host) {
+    this.file = file;
+    this.host = host;
   }
 
   public MealList parseMenues() throws IOException {
 
-    Document doc = Jsoup.connect(url).get();
+    Document doc = Jsoup.parse(file, "UTF-8", host);
 
     // date
     Elements days = doc.getElementsByClass("day-nav");

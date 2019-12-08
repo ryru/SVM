@@ -70,4 +70,8 @@ public class MealList {
   public List<MenuOption> getMealSaturday() {
     return meals.get(new Weekday((Weekdays.SATURDAY)));
   }
+
+  public int getSize() {
+    return meals.size();
+  }
 }
