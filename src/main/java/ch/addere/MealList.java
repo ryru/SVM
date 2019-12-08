@@ -48,30 +48,39 @@ public class MealList {
   }
 
   public List<MenuOption> getMealMonday() {
-    return meals.get(new Weekday((Weekdays.MONDAY)));
+    return getMealForDay(Weekdays.MONDAY);
   }
 
   public List<MenuOption> getMealTuesday() {
-    return meals.get(new Weekday((Weekdays.TUESDAY)));
+    return getMealForDay(Weekdays.TUESDAY);
   }
 
   public List<MenuOption> getMealWednesday() {
-    return meals.get(new Weekday((Weekdays.WEDNESDAY)));
+    return getMealForDay(Weekdays.WEDNESDAY);
   }
 
   public List<MenuOption> getMealThursday() {
-    return meals.get(new Weekday((Weekdays.THURSDAY)));
+    return getMealForDay(Weekdays.THURSDAY);
   }
 
   public List<MenuOption> getMealFriday() {
-    return meals.get(new Weekday((Weekdays.FRIDAY)));
+    return getMealForDay(Weekdays.FRIDAY);
   }
 
   public List<MenuOption> getMealSaturday() {
-    return meals.get(new Weekday((Weekdays.SATURDAY)));
+    return getMealForDay(Weekdays.SATURDAY);
   }
 
   public int getSize() {
     return meals.size();
+  }
+
+  private List<MenuOption> getMealForDay(Weekdays weekdays) {
+    Weekday key = new Weekday(weekdays);
+    if (meals.containsKey(key)) {
+      return meals.get(key);
+    } else {
+      throw new NoSuchElementException("No meal for this day");
+    }
   }
 }
