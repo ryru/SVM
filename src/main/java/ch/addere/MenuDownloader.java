@@ -14,16 +14,15 @@ public class MenuDownloader {
   }
 
   static File downloadMenu(String url) throws IOException {
+    URL getFrom = new URL(url);
     File tempFile;
 
-    try (InputStream in = new URL(url).openStream()) {
+    try (InputStream in = getFrom.openStream()) {
       tempFile = File.createTempFile("mensa", "html");
       tempFile.deleteOnExit();
       Files.copy(in, Paths.get(tempFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
-
     }
 
     return tempFile;
   }
-
 }
