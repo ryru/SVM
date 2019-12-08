@@ -1,5 +1,7 @@
 package ch.addere;
 
+import java.util.Objects;
+
 public class Price {
 
   private double priceINT;
@@ -23,5 +25,24 @@ public class Price {
     return "INT " + getPriceINT() + " " +
         "| EXT " + getPriceEXT();
 
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(priceINT, priceEXT);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == this) {
+      return true;
+    }
+
+    if (!(obj instanceof Price)) {
+      return false;
+    }
+
+    Price p = (Price) obj;
+    return (p.priceINT == this.priceINT && p.priceEXT == this.priceEXT);
   }
 }
