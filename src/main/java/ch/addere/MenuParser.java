@@ -19,7 +19,7 @@ public class MenuParser {
     this.host = host;
   }
 
-  public MealList parseMenues() throws IOException {
+  public MealList parseMenus() throws IOException {
 
     Document doc = Jsoup.parse(file, "UTF-8", host);
 

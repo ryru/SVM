@@ -20,7 +20,7 @@ class MenuParserTest {
   @Test
   void testParseSize() throws IOException {
     MenuParser menuParser = new MenuParser(htmlFile, HOST);
-    MealList mealList = menuParser.parseMenues();
+    MealList mealList = menuParser.parseMenus();
     assertEquals(5, mealList.getSize());
   }
 

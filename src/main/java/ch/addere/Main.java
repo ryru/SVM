@@ -1,9 +1,7 @@
 package ch.addere;
 
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -41,7 +39,7 @@ public class Main {
 
 
       MenuParser menuParserMensa = new MenuParser(tempFile, MENSA_URL);
-      MealList mensaMeals = menuParserMensa.parseMenues();
+      MealList mensaMeals = menuParserMensa.parseMenus();
       MenuPrinter menuMensaPrinter = new MenuPrinter(mensaMeals, parameterOptions);
       System.out.println(menuMensaPrinter.toString());
     }
@@ -53,7 +51,7 @@ public class Main {
       Files.copy(in, Paths.get(tempFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
 
       MenuParser menuParserBistro = new MenuParser(tempFile, BISTRO_URL);
-      MealList bistroMeals = menuParserBistro.parseMenues();
+      MealList bistroMeals = menuParserBistro.parseMenus();
       MenuPrinter menuForschPrinter = new MenuPrinter(bistroMeals, parameterOptions);
       System.out.println(menuForschPrinter.toString());
     }
