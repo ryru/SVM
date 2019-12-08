@@ -24,7 +24,7 @@ class MenuOptionTest {
         "Paniertes MSC Kabeljau Filet " +
         "mit Mayonnaise, Petersilien-Kartoffeln und Lattich mit Zwiebeln\n" +
         "Herkunft: Kabeljau / Nord-Ost Atlantik\n" +
-        "INT 8.00 | EXT 12.00";
+        "INT " + String.format("%.2f", 8.0) + " | EXT " + String.format("%.2f", 12.0);
     assertEquals(expected, menu1.toString());
   }
 }
