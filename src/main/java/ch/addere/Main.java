@@ -31,26 +31,14 @@ public class Main {
     }
 
     if (parameterOptions.hasMensa()) {
-
-      InputStream in = new URL(MENSA_URL).openStream();
-      File tempFile = File.createTempFile("mensa","html");
-      tempFile.deleteOnExit();
-      Files.copy(in, Paths.get(tempFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
-
-
-      MenuParser menuParserMensa = new MenuParser(tempFile, MENSA_URL);
+      MenuParser menuParserMensa = new MenuParser(MenuDownloader.downloadMenu(MENSA_URL), MENSA_URL);
       MealList mensaMeals = menuParserMensa.parseMenus();
       MenuPrinter menuMensaPrinter = new MenuPrinter(mensaMeals, parameterOptions);
       System.out.println(menuMensaPrinter.toString());
     }
 
     if (parameterOptions.hasBistro()) {
-      InputStream in = new URL(BISTRO_URL).openStream();
-      File tempFile = File.createTempFile("bistro","html");
-      tempFile.deleteOnExit();
-      Files.copy(in, Paths.get(tempFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
-
-      MenuParser menuParserBistro = new MenuParser(tempFile, BISTRO_URL);
+      MenuParser menuParserBistro = new MenuParser(MenuDownloader.downloadMenu(BISTRO_URL), BISTRO_URL);
       MealList bistroMeals = menuParserBistro.parseMenus();
       MenuPrinter menuForschPrinter = new MenuPrinter(bistroMeals, parameterOptions);
       System.out.println(menuForschPrinter.toString());
