@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/ryru/SVM.svg?branch=master)](https://travis-ci.org/ryru/SVM) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ryru_SVM&metric=alert_status)](https://sonarcloud.io/dashboard?id=ryru_SVM)
+ [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ryru_SVM&metric=coverage)](https://sonarcloud.io/dashboard?id=ryru_SVM)
+
 # SVM
 svm is a simple and straight forward menu cli application for printing upcoming meals at HSR applied university of Rapperswil mensa.
 
