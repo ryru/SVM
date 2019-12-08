@@ -31,7 +31,7 @@ class MenuPrinterTest {
         "---\n" +
         "Quorn-Geschnetzeltes mit Tomaten-Gemüse-Sauce und Fusilli Menüsalat\n" +
         "Vegetarisch\n" +
-        "INT 8,00 | EXT 12,00\n\n";
+        "INT " + String.format("%.2f", 8.0) + " | EXT " + String.format("%.2f", 12.0) + "\n\n";
     assertEquals(expected, menuPrinter.toString());
   }
 
