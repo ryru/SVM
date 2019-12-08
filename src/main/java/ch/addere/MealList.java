@@ -43,7 +43,7 @@ public class MealList {
     if (meals.containsKey(tomorrow)) {
       return meals.get(tomorrow);
     } else {
-      throw new NoSuchElementException("Error: Nu meal for tomorrow found.");
+      throw new NoSuchElementException("Error: No meal for tomorrow found.");
     }
   }
 
