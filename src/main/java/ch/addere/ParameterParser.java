@@ -1,7 +1,9 @@
 package ch.addere;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ParameterParser {
 
@@ -40,13 +42,8 @@ public class ParameterParser {
   private List<String> foundArguments = new ArrayList<>();
 
   public ParameterParser(String[] args) {
-    argumentList = new ArrayList<>();
-
     parameterOptions = new ParameterOptions();
-    for (String s : args) {
-      String newArg = s.toLowerCase().trim();
-      argumentList.add(newArg);
-    }
+    argumentList = new ArrayList<>(Arrays.asList(args));
   }
 
   public ParameterOptions parse() {
@@ -67,102 +64,113 @@ public class ParameterParser {
       findHelp(arg);
     });
 
-    argumentList.removeAll(foundArguments);
+    checkForInvalidArguments();
 
-    if (!parameterOptions.hasDate()) {
-      parameterOptions.setToday();
-    }
-
-    if (!parameterOptions.hasRestaurant()) {
-      parameterOptions.setMensa();
-    }
-
-    if (!argumentList.isEmpty()) {
-      throw new IllegalArgumentException(argumentList.get(0));
-    }
+    setDefaultDayIfNotAlreadySet();
+    setDefaultRestaurantIfNotAlreadySet();
 
     return parameterOptions;
   }
 
+  private void checkForInvalidArguments() {
+    argumentList.removeAll(foundArguments);
+
+    if (!argumentList.isEmpty()) {
+      throw new IllegalArgumentException(argumentList.get(0));
+    }
+  }
+
+  private void setDefaultRestaurantIfNotAlreadySet() {
+    if (!parameterOptions.hasRestaurant()) {
+      parameterOptions.setMensa();
+    }
+  }
+
+  private void setDefaultDayIfNotAlreadySet() {
+    if (!parameterOptions.hasDate()) {
+      parameterOptions.setToday();
+    }
+  }
+
   private void findMensa(String arg) {
-    if (arg.equals(MENSA)) {
+    if (Stream.of(MENSA).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setMensa();
       foundArguments.add(arg);
     }
   }
 
   private void findBistro(String arg) {
-    if (arg.equals(BISTRO)) {
+    if (Stream.of(BISTRO).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setBistro();
       foundArguments.add(arg);
     }
   }
 
   private void findVegetarianOnly(String arg) {
-    if (arg.equals(VEGI) || arg.equals(VEGETARIAN) || arg.equals(V)) {
+    if (Stream.of(VEGI, VEGETARIAN, V).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setVegetarianOnly();
       foundArguments.add(arg);
     }
   }
 
   private void findToday(String arg) {
-    if (arg.equals(TOD) || arg.equals(TODAY)) {
+    if (Stream.of(TOD, TODAY).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setToday();
       foundArguments.add(arg);
     }
   }
 
   private void findTomorrow(String arg) {
-    if (arg.equals(TOM) || arg.equals(TOMORROW)) {
+    if (Stream.of(TOM, TOMORROW).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setTomorrow();
       foundArguments.add(arg);
     }
   }
 
   private void findMonday(String arg) {
-    if (arg.equals(MO) || arg.equals(MON) || arg.equals(MONDAY)) {
+    if (Stream.of(MO, MON, MONDAY).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setMonday();
       foundArguments.add(arg);
     }
   }
 
   private void findTuesday(String arg) {
-    if (arg.equals(TU) || arg.equals(TUE) || arg.equals(TUESDAY)) {
+    if (Stream.of(TU, TUE, TUESDAY).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setTuesday();
       foundArguments.add(arg);
     }
   }
 
   private void findWednesday(String arg) {
-    if (arg.equals(WE) || arg.equals(WED) || arg.equals(WEDNESDAY)) {
+    if (Stream.of(WE, WED, WEDNESDAY).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setWednesday();
       foundArguments.add(arg);
     }
   }
 
   private void findThursday(String arg) {
-    if (arg.equals(TH) || arg.equals(THU) || arg.equals(THURSDAY)) {
+    if (Stream.of(TH, THU, THURSDAY).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setThursday();
       foundArguments.add(arg);
     }
   }
 
   private void findFriday(String arg) {
-    if (arg.equals(FR) || arg.equals(FRI) || arg.equals(FRIDAY)) {
+    if (Stream.of(FR, FRI, FRIDAY).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setFriday();
       foundArguments.add(arg);
     }
   }
 
   private void findSaturday(String arg) {
-    if (arg.equals(SA) || arg.equals(SAT) || arg.equals(SATURDAY)) {
+    if (Stream.of(SA, SAT, SATURDAY).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setSaturday();
       foundArguments.add(arg);
     }
   }
 
   private void findAllWeek(String arg) {
-    if (arg.equals(ALL)) {
+    if (Stream.of(ALL).anyMatch(arg::equalsIgnoreCase)) {
       parameterOptions.setMonday();
       parameterOptions.setTuesday();
       parameterOptions.setWednesday();

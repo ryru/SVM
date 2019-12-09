@@ -1,6 +1,7 @@
 package ch.addere;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -102,7 +103,7 @@ class ParameterParserTest {
   }
 
   @Test
-  void testContentVegetarisch() {
+  void testContentVegetarian() {
     String args = "vegetarian";
     ParameterParser parameterParser = new ParameterParser(tokenise(args));
     ParameterOptions result = parameterParser.parse();
@@ -143,5 +144,66 @@ class ParameterParserTest {
     assertEquals(expected, result);
   }
 
+  @Test
+  void testContentMon() {
+    String args = "mon";
+    ParameterParser parameterParser = new ParameterParser(tokenise(args));
+    ParameterOptions result = parameterParser.parse();
+    assertTrue(result.hasMonday());
+  }
 
+  @Test
+  void testContentTue() {
+    String args = "tue";
+    ParameterParser parameterParser = new ParameterParser(tokenise(args));
+    ParameterOptions result = parameterParser.parse();
+    assertTrue(result.hasTuesday());
+  }
+
+  @Test
+  void testContentWed() {
+    String args = "wed";
+    ParameterParser parameterParser = new ParameterParser(tokenise(args));
+    ParameterOptions result = parameterParser.parse();
+    assertTrue(result.hasWednesday());
+  }
+
+  @Test
+  void testContentThu() {
+    String args = "thu";
+    ParameterParser parameterParser = new ParameterParser(tokenise(args));
+    ParameterOptions result = parameterParser.parse();
+    assertTrue(result.hasThursday());
+  }
+
+  @Test
+  void testContentFri() {
+    String args = "fri";
+    ParameterParser parameterParser = new ParameterParser(tokenise(args));
+    ParameterOptions result = parameterParser.parse();
+    assertTrue(result.hasFriday());
+  }
+
+  @Test
+  void testContentSat() {
+    String args = "sat";
+    ParameterParser parameterParser = new ParameterParser(tokenise(args));
+    ParameterOptions result = parameterParser.parse();
+    assertTrue(result.hasSaturday());
+  }
+
+  @Test
+  void testContentHelp() {
+    String args = "help";
+    ParameterParser parameterParser = new ParameterParser(tokenise(args));
+    ParameterOptions result = parameterParser.parse();
+    assertTrue(result.hasHelp());
+  }
+
+  @Test
+  void testInvalidArgument1() {
+    String args = "foo";
+    ParameterParser parameterParser = new ParameterParser(tokenise(args));
+    assertThrows(IllegalArgumentException.class, parameterParser::parse);
+  }
 }
