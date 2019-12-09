@@ -8,7 +8,7 @@ public class ParameterParser {
   private static final String MENSA = "mensa";
   private static final String BISTRO = "bistro";
   private static final String VEGI = "vegi";
-  private static final String VEGETARISCH = "vegetarian";
+  private static final String VEGETARIAN = "vegetarian";
   private static final String V = "v";
   private static final String TOD = "tod";
   private static final String TODAY = "today";
@@ -99,7 +99,7 @@ public class ParameterParser {
   }
 
   private void findVegetarianOnly(String arg) {
-    if (arg.equals(VEGI) || arg.equals(VEGETARISCH) || arg.equals(V)) {
+    if (arg.equals(VEGI) || arg.equals(VEGETARIAN) || arg.equals(V)) {
       parameterOptions.setVegetarianOnly();
       foundArguments.add(arg);
     }
