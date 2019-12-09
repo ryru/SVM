@@ -2,6 +2,7 @@ package ch.addere;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class MenuPrinter {
 
@@ -85,30 +86,62 @@ public class MenuPrinter {
   }
 
   private void parseAbsoluteDate(List<List<MenuOption>> menuOptions) {
-    if (parameterOptions.hasMonday() && !menuOptions.contains(mealList.getMealMonday())) {
-      menuOptions.add(mealList.getMealMonday());
+    if (parameterOptions.hasMonday()) {
+      getMealOfDay(menuOptions, Weekdays.MONDAY);
     }
 
-    if (parameterOptions.hasTuesday() && !menuOptions.contains(mealList.getMealTuesday())) {
-      menuOptions.add(mealList.getMealTuesday());
+    if (parameterOptions.hasTuesday()) {
+      getMealOfDay(menuOptions, Weekdays.TUESDAY);
     }
 
-    if (parameterOptions.hasWednesday() && !menuOptions.contains(mealList.getMealWednesday())) {
-      menuOptions.add(mealList.getMealWednesday());
+    if (parameterOptions.hasWednesday()) {
+      getMealOfDay(menuOptions, Weekdays.WEDNESDAY);
     }
 
-    if (parameterOptions.hasThursday() && !menuOptions.contains(mealList.getMealThursday())) {
-      menuOptions.add(mealList.getMealThursday());
+    if (parameterOptions.hasThursday()) {
+      getMealOfDay(menuOptions, Weekdays.THURSDAY);
     }
 
-    if (parameterOptions.hasFriday() && !menuOptions.contains(mealList.getMealFriday())) {
-      menuOptions.add(mealList.getMealFriday());
+    if (parameterOptions.hasFriday()) {
+      getMealOfDay(menuOptions, Weekdays.FRIDAY);
     }
 
-    if (parameterOptions.hasSaturday() && !menuOptions.contains(mealList.getMealSaturday())) {
-      menuOptions.add(mealList.getMealSaturday());
+    if (parameterOptions.hasSaturday()) {
+      getMealOfDay(menuOptions, Weekdays.SATURDAY);
     }
 
+  }
+
+  private void getMealOfDay(List<List<MenuOption>> menuOptions, Weekdays day) {
+    try {
+      List<MenuOption> dayMenu = null;
+
+      switch (day) {
+        case MONDAY:
+          dayMenu = mealList.getMealMonday();
+          break;
+        case TUESDAY:
+          dayMenu = mealList.getMealTuesday();
+          break;
+        case WEDNESDAY:
+          dayMenu = mealList.getMealWednesday();
+          break;
+        case THURSDAY:
+          dayMenu = mealList.getMealThursday();
+          break;
+        case FRIDAY:
+          dayMenu = mealList.getMealFriday();
+          break;
+        case SATURDAY:
+          dayMenu = mealList.getMealSaturday();
+          break;
+      }
+
+      if (!menuOptions.contains(dayMenu)) {
+        menuOptions.add(dayMenu);
+      }
+    } catch (NoSuchElementException ignored) {
+    }
   }
 
   private List<List<MenuOption>> parseVegetarianOnly(List<List<MenuOption>> menuOptions) {

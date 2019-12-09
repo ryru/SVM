@@ -1,6 +1,7 @@
 package ch.addere;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,14 +10,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class MealListTest {
-  static private File htmlFile;
+
   private static MealList mealList;
   static private final String HOST = "https://hochschule-rapperswil.sv-restaurant.ch";
   static private final String TEST_FILE = "src/test/resources/HSRMensa.html";
 
   @BeforeAll
   static void initialise() throws IOException {
-    htmlFile = new File(TEST_FILE);
+    File htmlFile = new File(TEST_FILE);
     mealList = new MenuParser(htmlFile, HOST).parseMenus();
   }
 
