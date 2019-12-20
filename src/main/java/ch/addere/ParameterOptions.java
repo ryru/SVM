@@ -1,6 +1,8 @@
 package ch.addere;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class ParameterOptions {
 
@@ -18,6 +20,7 @@ public class ParameterOptions {
   private boolean isThursday;
   private boolean isFriday;
   private boolean isSaturday;
+  private Set<Weekdays> weekdays;
 
   private boolean isHelp;
 
@@ -36,6 +39,7 @@ public class ParameterOptions {
     this.isThursday = false;
     this.isFriday = false;
     this.isSaturday = false;
+    this.weekdays = new HashSet<>();
     this.hasDate = false;
     this.hasRestaurant = false;
   }
@@ -115,6 +119,7 @@ public class ParameterOptions {
   }
 
   public void setMonday() {
+    weekdays.add(Weekdays.MONDAY);
     isMonday = true;
     hasDate = true;
   }
@@ -124,6 +129,7 @@ public class ParameterOptions {
   }
 
   public void setTuesday() {
+    weekdays.add(Weekdays.TUESDAY);
     isTuesday = true;
     hasDate = true;
   }
@@ -133,6 +139,7 @@ public class ParameterOptions {
   }
 
   public void setWednesday() {
+    weekdays.add(Weekdays.WEDNESDAY);
     isWednesday = true;
     hasDate = true;
   }
@@ -142,6 +149,7 @@ public class ParameterOptions {
   }
 
   public void setThursday() {
+    weekdays.add(Weekdays.THURSDAY);
     isThursday = true;
     hasDate = true;
   }
@@ -151,6 +159,7 @@ public class ParameterOptions {
   }
 
   public void setFriday() {
+    weekdays.add(Weekdays.FRIDAY);
     isFriday = true;
     hasDate = true;
   }
@@ -168,8 +177,13 @@ public class ParameterOptions {
   }
 
   public void setSaturday() {
+    weekdays.add(Weekdays.SATURDAY);
     isSaturday = true;
     hasDate = true;
+  }
+
+  public boolean containsWeekday(Weekdays weekday) {
+    return weekdays.contains(weekday);
   }
 
   public boolean hasDate() {

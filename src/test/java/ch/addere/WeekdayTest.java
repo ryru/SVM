@@ -32,7 +32,7 @@ class WeekdayTest {
   @Test
   void testToString() {
     Weekday result = new Weekday(Weekdays.MONDAY, "6.12.");
-    String expected = "Mo 6.12.";
+    String expected = "Mo 06.12.";
     assertEquals(expected, result.toString());
   }
 

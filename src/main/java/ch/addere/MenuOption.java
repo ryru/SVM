@@ -33,6 +33,10 @@ public class MenuOption {
     return weekday.toString();
   }
 
+  public Weekdays getWeekday() {
+    return weekday.getWeekday();
+  }
+
   public String getTitle() {
     return title;
   }

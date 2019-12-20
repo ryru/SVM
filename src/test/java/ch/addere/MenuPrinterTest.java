@@ -35,6 +35,21 @@ class MenuPrinterTest {
   }
 
   @Test
+  void testMondayVegiMenu() {
+    ParameterOptions parameterOptions = new ParameterOptions();
+    parameterOptions.setMensa();
+    parameterOptions.setMonday();
+    parameterOptions.setVegetarianOnly();
+    MenuPrinter menuPrinter = new MenuPrinter(mealList, parameterOptions);
+    String expected = "=== Mo 09.12.\n" +
+        "---\n" +
+        "Quorn-Geschnetzeltes mit Tomaten-Gemüse-Sauce und Fusilli Menüsalat\n" +
+        "Vegetarisch\n" +
+        "INT " + String.format("%.2f", 8.0) + " | EXT " + String.format("%.2f", 12.0) + "\n\n";
+    assertEquals(expected, menuPrinter.toString());
+  }
+
+  @Test
   void testAllVegiMenu() {
     ParameterOptions parameterOptions = new ParameterOptions();
     parameterOptions.setMensa();

@@ -1,18 +1,18 @@
 package ch.addere;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class MealList {
 
-  private Map<Weekday, List<MenuOption>> meals;
+  private SortedMap<Weekday, List<MenuOption>> meals;
   private Weekday today;
   private Weekday tomorrow;
 
   public MealList() {
-    this.meals = new HashMap<>();
+    this.meals = new TreeMap<>();
   }
 
   public Weekday getToday() {
@@ -67,8 +67,8 @@ public class MealList {
     return getMealForDay(Weekdays.FRIDAY);
   }
 
-  public List<MenuOption> getMealSaturday() {
-    return getMealForDay(Weekdays.SATURDAY);
+  public SortedMap<Weekday, List<MenuOption>> getAllMeals() {
+    return meals;
   }
 
   public int getSize() {
@@ -77,7 +77,8 @@ public class MealList {
 
   private List<MenuOption> getMealForDay(Weekdays weekdays) {
     Weekday key = new Weekday(weekdays);
-    if (meals.containsKey(key)) {
+    boolean keyFound = meals.containsKey(key);
+    if (keyFound) {
       return meals.get(key);
     } else {
       throw new NoSuchElementException("No meal for this day");

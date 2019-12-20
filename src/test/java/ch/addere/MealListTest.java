@@ -1,11 +1,9 @@
 package ch.addere;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -66,14 +64,6 @@ class MealListTest {
   @Test
   void testGetMealFriday() {
     assertEquals(4, mealList.getMealFriday().size());
-  }
-
-  @Test
-  void testGetMealSaturday() {
-    NoSuchElementException exception = assertThrows(NoSuchElementException.class,
-        () -> mealList.getMealSaturday());
-
-    assertEquals("No meal for this day", exception.getMessage());
   }
 
 }

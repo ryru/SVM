@@ -1,6 +1,7 @@
 package ch.addere;
 
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 enum Weekdays {
   MONDAY,
@@ -11,19 +12,19 @@ enum Weekdays {
   SATURDAY
 }
 
-public class Weekday {
+public class Weekday implements Comparable<Weekday> {
 
   private Weekdays weekdays;
-  private String date;
+  private WeekDate date;
 
   public Weekday(Weekdays weekdays) {
     this.weekdays = weekdays;
-    this.date = "";
+    this.date = null;
   }
 
   public Weekday(Weekdays weekdays, String date) {
     this.weekdays = weekdays;
-    this.date = date;
+    this.date = parseDate(date);
   }
 
   public static Weekdays parseWeekday(String day) {
@@ -86,6 +87,10 @@ public class Weekday {
     return Objects.hash(weekdays);
   }
 
+  public Weekdays getWeekday() {
+    return weekdays;
+  }
+
   public String getDay() {
     String day;
 
@@ -113,5 +118,26 @@ public class Weekday {
     }
 
     return day;
+  }
+
+  private WeekDate parseDate(String date) {
+    if (date == null || date.isEmpty() || date.length() > 6) {
+      throw new IllegalArgumentException("Error: Invalid date");
+    }
+
+    StringTokenizer stringTokenizer = new StringTokenizer(date, ".");
+    int day = Integer.parseInt(stringTokenizer.nextToken());
+    int month = Integer.parseInt(stringTokenizer.nextToken());
+
+    return new WeekDate(day, month);
+  }
+
+  @Override
+  public int compareTo(Weekday other) {
+    if (date != null) {
+      return date.compareTo(other.date);
+    } else {
+      return 0;
+    }
   }
 }
